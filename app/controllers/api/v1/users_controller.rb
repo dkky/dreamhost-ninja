@@ -4,9 +4,8 @@ class Api::V1::UsersController < ApplicationController
   def create
     user = User.new(users_params)
     if user.valid?
-      # validate active model
-      # gem prevent ddos
-      response 
+      # Job for scraping 
+      # response = whatever successful response coming from the job
     else
       response = user.errors.full_messages
     end
