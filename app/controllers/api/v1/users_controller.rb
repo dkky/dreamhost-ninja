@@ -4,8 +4,8 @@ class Api::V1::UsersController < ApplicationController
   def create
     user = User.new(users_params)
     if user.valid?
-      # Job for scraping 
-      # response = whatever successful response coming from the job
+      DreamhostScraperJob.perform_later(user.domain_name, user.username, user.valid_email)
+      response = "User details are accepted."
     else
       response = user.errors.full_messages
     end

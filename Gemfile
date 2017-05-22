@@ -24,6 +24,10 @@ gem 'puma', '~> 3.0'
 # gem 'rack-cors'
 gem 'figaro'
 gem 'rack-attack'
+gem 'sidekiq'
+gem 'watir'
+
+
 
 
 group :development, :test do
