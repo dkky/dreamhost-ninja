@@ -5,6 +5,7 @@ class Api::V1::UsersController < ApplicationController
     user = User.new(users_params)
     if user.valid?
       DreamhostScraperJob.perform_later(user.domain_name, user.username, user.valid_email)
+      response = "User details are accepted."
     else
       response = user.errors.full_messages
     end
