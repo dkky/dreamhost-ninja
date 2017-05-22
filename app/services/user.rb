@@ -14,4 +14,8 @@ class User
   def valid_email
     @email.gsub(/@/, '&&&&') + '@student.nextacademy.com'
   end
+
+  def username
+    @domain_name.gsub(/\.[\w\d\W]*/, '')
+  end
 end
