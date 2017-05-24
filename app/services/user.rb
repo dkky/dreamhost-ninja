@@ -17,10 +17,10 @@ class User
   end
 
   def valid_domain_name
-    @domain_name.gsub(/\.[\w\d\W]*/, @random_number + '\\0')
+    username + '.nextqd.com'
   end
 
   def username
-    @domain_name.gsub(/\.[\w\d\W]*/, @random_number)
+    @domain_name + @random_number
   end
 end
