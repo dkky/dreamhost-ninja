@@ -15,7 +15,11 @@ class User
     @email.gsub(/@/, '&&&&') + '@student.nextacademy.com'
   end
 
+  def valid_domain_name
+    @domain_name.gsub(/\.[\w\d\W]*/, SecureRandom.random_number(100).to_s + '\\0')
+  end
+
   def username
-    @domain_name.gsub(/\.[\w\d\W]*/, '')
+    @domain_name.gsub(/\.[\w\d\W]*/, SecureRandom.random_number(100).to_s)
   end
 end
