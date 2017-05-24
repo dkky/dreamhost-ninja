@@ -3,12 +3,13 @@ class User
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  attr_reader :domain_name, :email
+  attr_reader :domain_name, :email, :random_number
   validates :email, format: { with: /\A[\w._-]+[+]?[\w._-]+@[\w.-]+\.[a-zA-Z]{2,6}\z/}
 
   def initialize(info)
     @email = info[:email]
     @domain_name = info[:domain_name]
+    @random_number = SecureRandom.random_number(100).to_s
   end
 
   def valid_email
@@ -16,10 +17,10 @@ class User
   end
 
   def valid_domain_name
-    @domain_name.gsub(/\.[\w\d\W]*/, SecureRandom.random_number(100).to_s + '\\0')
+    @domain_name.gsub(/\.[\w\d\W]*/, @random_number + '\\0')
   end
 
   def username
-    @domain_name.gsub(/\.[\w\d\W]*/, SecureRandom.random_number(100).to_s)
+    @domain_name.gsub(/\.[\w\d\W]*/, @random_number)
   end
 end
