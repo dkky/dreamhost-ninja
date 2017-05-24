@@ -38,7 +38,7 @@ class DreamhostUserGrantorJob < ApplicationJob
     browser.input(value: 'Set Privileges').click
 
     if browser.div(class: 'error').exists?
-      slack_error_notify(domain_name, username, email, "Set Privileges")
+      slack_error_notify(domain_name, username, email, browser.div(class: 'errorbox').div(class: 'body').text)
     end
     # END ==========================
 
