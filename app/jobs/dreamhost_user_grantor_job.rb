@@ -36,13 +36,13 @@ class DreamhostUserGrantorJob < ApplicationJob
     checkbox.click
     browser.input(id:"SI_4847623").click
     browser.input(value: 'Set Privileges').click
+
     if browser.div(class: 'error').exists?
-        slack_error_notify(domain_name, username, email, "Set Privileges")
+      slack_error_notify(domain_name, username, email, "Set Privileges")
     end
     # END ==========================
 
      #==== NAVIGATION 3 ========
-    # browser.li(id: 'treenav_tab_users').button.click
     browser.li(id: 'treenav_subtab_users_access').a.click
     browser.tables.find{|table| puts "user privilege is granted" if table.td(:text=> username).exists?}
   end
