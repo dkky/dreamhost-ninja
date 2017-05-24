@@ -37,13 +37,13 @@ class DreamhostHostMakerJob < ApplicationJob
     sleep 5
 
     if browser.div(class: 'errorbox').exists? && browser.div(class: 'errorbox').div(class: 'body').text =~ /Your username/
-      slack_error_notify(domain_name, username, email, "Username Exists")
+      slack_error_notify(domain_name, username, email, browser.div(class: 'errorbox').div(class: 'body').text)
     end  
 
     if browser.div(class: 'successbox').exists? || browser.div(class: 'errorbox').div(class: 'body').text =~ /You can't add that domain: already in our system/
       puts 'The host is sucessfully submitted'
     else
-      slack_error_notify(domain_name, username, email, "Domain Exists")
+      slack_error_notify(domain_name, username, email, browser.div(class: 'errorbox').div(class: 'body').text)
     end
   end
 end
