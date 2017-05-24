@@ -27,7 +27,7 @@ gem 'rack-attack'
 gem 'sidekiq'
 gem 'watir'
 
-
+gem 'unirest'
 
 
 group :development, :test do

@@ -1,4 +1,5 @@
 class DreamhostHostMakerJob < ApplicationJob
+  include SlackNotification
   queue_as :default
 
   after_perform do |job|
@@ -36,13 +37,13 @@ class DreamhostHostMakerJob < ApplicationJob
     sleep 5
 
     if browser.div(class: 'errorbox').exists? && browser.div(class: 'errorbox').div(class: 'body').text =~ /Your username/
-      puts 'Send Slack'
+        slack_error_notify(domain_name, username, email, "Username Exists")
     end  
 
     if browser.div(class: 'successbox').exists? || browser.div(class: 'errorbox').div(class: 'body').text =~ /You can't add that domain: already in our system/
       puts 'The host is sucessfully submitted'
     else
-      puts 'Send Slack'
+        slack_error_notify(domain_name, username, email, "Domain Exists")
     end
   end
 end

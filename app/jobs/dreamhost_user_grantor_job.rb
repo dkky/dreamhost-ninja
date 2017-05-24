@@ -1,4 +1,5 @@
 class DreamhostUserGrantorJob < ApplicationJob
+  include SlackNotification
   queue_as :default
 
   def perform(domain_name, username, email)
@@ -36,7 +37,7 @@ class DreamhostUserGrantorJob < ApplicationJob
     browser.input(id:"SI_4847623").click
     browser.input(value: 'Set Privileges').click
     if browser.div(class: 'error').exists?
-        puts 'send slack'
+        slack_error_notify(domain_name, username, email, "Set Privileges")
     end
     # END ==========================
 
