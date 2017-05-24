@@ -4,8 +4,8 @@ class Api::V1::UsersController < ApplicationController
   def create
     user = User.new(users_params)
     if user.valid?
-      DreamhostScraperJob.perform_later(user.domain_name, user.username, user.valid_email)
-      response = "User details are accepted."
+      DreamhostHostMakerJob.perform_later(user.valid_domain_name, user.username, user.valid_email)
+      response = "User details are accepted.".to_json
     else
       response = user.errors.full_messages
     end
