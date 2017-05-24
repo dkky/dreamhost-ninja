@@ -3,7 +3,7 @@ class User
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  attr_reader :domain_name, :email, :random_number
+  attr_reader :domain_name, :email
   validates :email, format: { with: /\A[\w._-]+[+]?[\w._-]+@[\w.-]+\.[a-zA-Z]{2,6}\z/}
 
   def initialize(info)

@@ -1,4 +1,3 @@
-require 'unirest'
 module SlackNotification
   extend ActiveSupport::Concern
 
@@ -12,7 +11,7 @@ module SlackNotification
                         {
                             "title": "*Details of registration",
                             "text": "*domain_name*: #{domain_name} \n *username*: #{username} \n *email*: #{email}",
-                            "pretext": "*Message:* #{error}"
+                            "pretext": "*Message:* #{error}",
                             "mrkdwn_in": [
                                 "text",
                                 "pretext"

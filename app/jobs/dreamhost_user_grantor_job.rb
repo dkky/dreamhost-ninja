@@ -36,9 +36,11 @@ class DreamhostUserGrantorJob < ApplicationJob
     checkbox.click
     browser.input(id:"SI_4847623").click
     browser.input(value: 'Set Privileges').click
-
-    if browser.div(class: 'error').exists?
+    if browser.div(class: 'errorbox').exists?
       slack_error_notify(domain_name, username, email, browser.div(class: 'errorbox').div(class: 'body').text)
+    end
+    if browser.div(class: 'error').exists?
+      slack_error_notify(domain_name, username, email, browser.div(class: 'error').text)
     end
     # END ==========================
 
