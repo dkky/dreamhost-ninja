@@ -39,6 +39,9 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.3.8)
+    appsignal (2.2.1)
+      rack
+      thread_safe
     arel (7.1.4)
     builder (3.2.3)
     byebug (9.0.6)
@@ -149,6 +152,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  appsignal
   byebug
   figaro
   listen (~> 3.0.5)
