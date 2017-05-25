@@ -28,7 +28,6 @@ gem 'sidekiq'
 gem 'watir'
 gem 'unirest'
 gem 'appsignal'
-gem 'puma_worker_killer'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
